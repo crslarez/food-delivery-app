@@ -11,25 +11,11 @@ import { async } from "@firebase/util";
 import Account from "../components/Account";
 import Order2 from "../components/Order2";
 
-
-
-
-
 const Products = () => {
-
-  
-
-  
 
   const { restaurantes, setRestaurantes ,restaurante ,FilterProducts } = useContext(Context);
 
 
-
-  
-
-  // console.log(restaurante)
-  
-    ;
   return (
 
     <div className="main">
@@ -64,21 +50,7 @@ const Products = () => {
 
         <div>
           {/* {
-            restaurante.menu == undefined ? (Pr.map(item=>(<div >
-
-
-              <div className="flex flex-wrap  w-200 mb-2">
-                <div className='imgBox'>
-                  <img className="rounded-xl m-2" src={item.image} alt="" />
-                </div>
-                <h3 className="text-xl w-1/2">{item.name}</h3>
-
-
-              </div>
-              <div className="text-xs w-1/2 text-gray-400">{item.price}</div>
-            </div>))) 
-            
-            
+            rest
             
             
             : (restaurante.menu.map(item => (<div >
@@ -97,8 +69,6 @@ const Products = () => {
           } */}
 
 
-
-
           {restaurante?.menu?.map(item=><div >
 
 
@@ -112,31 +82,13 @@ const Products = () => {
     </div>
     <div className="text-xs w-1/2 text-gray-400">{item.price}</div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </div>
     )}
         </div>
 
-
         <div />
 
-
-
       </div>
-
-
-
-
-
-
 
     </div>
   );

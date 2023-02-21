@@ -9,7 +9,6 @@ import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import Products from "../pages/Products";
 import { getAuth } from "firebase/auth";
-
 import Order2 from "../components/Order2";
 import Account from "../components/Account";
 
