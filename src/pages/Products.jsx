@@ -15,13 +15,6 @@ import Order2 from "../components/Order2";
 
 
 
-
-
-
-
-
-
-
 const Products = () => {
 
   
