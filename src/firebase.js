@@ -11,27 +11,27 @@ import {getAuth, GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDX5-v4t_VTArmlaYFJlPrwEpgV27K2_2A",
-  authDomain: "delivery-app-2b252.firebaseapp.com",
-  projectId: "delivery-app-2b252",
-  storageBucket: "delivery-app-2b252.appspot.com",
-  messagingSenderId: "959027708091",
-  appId: "1:959027708091:web:f37ea7f0bf800dedf9e99e",
+  apiKey: "AIzaSyBmrSD10oxVn3oYlqoTithae0KxxISwCkM",
+  authDomain: "food-delivery-app-c2f6d.firebaseapp.com",
+  projectId: "food-delivery-app-c2f6d",
+  storageBucket: "food-delivery-app-c2f6d.appspot.com",
+  messagingSenderId: "1056068637007",
+  appId: "1:1056068637007:web:f37ea7f0bf800dedf9e99e",
   measurementId: "G-3FZLMLXBQR"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth=getAuth(app)
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
-
-
-// export const getData = async () => {
-//   const res = await getDocs(collection(db, 'restaurantes'));
-
-//   return res
-
-// }
-
+export const getDataRest = async() => {
+  const rest = await getDocs(collection(db,"foodList"));
+  const restaurants = [];
+  rest.forEach(r=>{
+    const restaurant = r.data()
+    restaurant.id = r.id;
+    restaurants.push(restaurant);
+  });
+  return {restaurants} 
+}

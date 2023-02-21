@@ -6,14 +6,16 @@ import { signInWithPopup } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../features/user/userSlice";
 import { GeoPoint } from "firebase/firestore";
-
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
-  //vamos a traer el estado de redux
+  const navigate = useNavigate()
     const dispatch = useDispatch();
     const [lat , setLat] = useState(0);
     const [lng , setLng] = useState(0)
+    const [user,setUser]  = useState(null)
+    
 
     useEffect(() => {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -22,8 +24,6 @@ const Login = () => {
       });
     }, []);
     
-
-
   const handleLogin = () => {
     const location= new GeoPoint(lat,lng)
     signInWithPopup(auth, provider)
@@ -37,15 +37,22 @@ const Login = () => {
               foto: result.user.photoURL,
               direccion: "",
               celular:"",
-              
-
-             
-             
-
             }
-          )
-        ))
-        
+            ),
+            setUser(
+              {
+                correo: result.user.email,
+              nombre: result.user.displayName,
+              foto: result.user.photoURL,
+              direccion: "",
+              celular:"",
+              }
+            )
+            ))
+            if (user) navigate ("/app/home")
+
+              
+            
         
   };
 

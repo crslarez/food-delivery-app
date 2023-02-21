@@ -15,10 +15,6 @@ const RestaurantCard = ({ descripcion, nombre, direccion, imagen, key ,id }) => 
   const navigate = useNavigate()
 
 
-  //FUNCIONES EN ESTE COMPONENTE
-  // Traer la data de los restaurantes de la Firesotre
-  // Mapear e impirmir una card por cada restaurante
-
   return (
     
     <ul>

@@ -11,36 +11,23 @@ import Products from "./Products";
 import Account from "../components/Account";
 import Order2 from "../components/Order2";
 import { Context } from "../components/Layout";
-
-
+import { getDataRest } from "../firebase";
 
 const pepito = getData()
 
-
-
-
-
-
-
 const Home = () => {
+  const{restaurantes, getDataRest} = useContext(Context);
 
+  useEffect(()=> {
+    getDataRest()
+  },[])
 
-
-
-  const context = useContext(Context);
 
   console.log(context);
-
-
-
-
-
-
 
   return (
 
     <div className="main">
-
 
       <div className="login bg-white h-screen flex justify-between flex-col max-w-md mx-auto p-5 py-20 ">
 
