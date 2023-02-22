@@ -9,7 +9,7 @@ import Image1 from "../assets/images/Img.png"
 function Search() {
   return (
     <div className='main'>
-      <div className='bg-white h-screen flex justify-between flex-col max-w-md mx-auto p-5 py-20' bg="light" expand="lg">
+      <div className='bg-white h-screen flex flex-col max-w-md mx-auto p-5 py-20' bg="light" expand="lg">
         
       <Navbar ><Container fluid>
           

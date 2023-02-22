@@ -16,7 +16,7 @@ const Order2 = () => {
         <ul>
           <li key="img-carousel-1">
             <img
-              className="m-5 items-center     bg-white"
+              className="rounded-full m-5 items-center     bg-white"
               src={Image1}
               alt="Info image 1"
             />

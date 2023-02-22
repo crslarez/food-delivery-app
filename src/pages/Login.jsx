@@ -63,11 +63,12 @@ const Login = () => {
           <p>By clicking the button next you accept.</p>
           <span>Terms of use</span>
         </div>
-        <div className="Login__button">
-          <button type="button" onClick={handleLogin}>
+        <div onClick={handleLogin} className=" cursor-pointer flex bg-yellow-400 place-items-center px-20 py-3 rounded-full gap-2 mt-5">
+          <button type="button" >
             <FcGoogle size="1.5rem" />
-            Login with Google
+            
           </button>
+          <h1>Login with Google</h1>
         </div>
       </div>
     </div>
