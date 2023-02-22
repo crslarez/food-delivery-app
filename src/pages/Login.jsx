@@ -1,59 +1,51 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/images/Logo.png";
 import { auth, provider } from "../firebase";
-import { FcGoogle, } from "react-icons/fc"
-import { signInWithPopup } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { addUser } from "../features/user/userSlice";
-import { GeoPoint } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
-  const navigate = useNavigate()
-    const dispatch = useDispatch();
-    const [lat , setLat] = useState(0);
-    const [lng , setLng] = useState(0)
-    const [user,setUser]  = useState(null)
-    
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude);
+      setLng(position.coords.longitude);
+    });
+  }, []);
+
+  const handleLogin = async () => {
+    const googleProvider = new GoogleAuthProvider();
+    await signInWithPopup(auth, googleProvider).then((result) => {
+      dispatch(
+        addUser({
+          correo: result.user.email,
+          nombre: result.user.displayName,
+          foto: result.user.photoURL,
+          direccion: "",
+          celular: "",
+        })
+      );
+      setUser({
+        correo: result.user.email,
+        nombre: result.user.displayName,
+        foto: result.user.photoURL,
+        direccion: "",
+        celular: "",
       });
-    }, []);
-    
-  const handleLogin = () => {
-    const location= new GeoPoint(lat,lng)
-    signInWithPopup(auth, provider)
-      .then((result) =>
-        
-        dispatch(
-          addUser(
-            {
-              correo: result.user.email,
-              nombre: result.user.displayName,
-              foto: result.user.photoURL,
-              direccion: "",
-              celular:"",
-            }
-            ),
-            setUser(
-              {
-                correo: result.user.email,
-              nombre: result.user.displayName,
-              foto: result.user.photoURL,
-              direccion: "",
-              celular:"",
-              }
-            )
-            ))
-            if (user) navigate ("/app/home")
-
-              
-            
-        
+      if (user) {
+        navigate("/app/home");
+      } else {
+        navigate("/app/home");
+      }
+    });
   };
 
   return (
@@ -63,10 +55,7 @@ const Login = () => {
           <img src={Logo} alt="Logo" width="100" />
         </div>
         <h3>Sing in</h3>
-        <p>
-          Login or create an account with your phone number to start ordering
-        </p>
-
+        <p>Login or create an account with your phone number to start ordering</p>
       </div>
 
       <div className="Login__footer">
@@ -77,10 +66,10 @@ const Login = () => {
         <div className="Login__button">
           <button type="button" onClick={handleLogin}>
             <FcGoogle size="1.5rem" />
-            Login whith google</button>
+            Login with Google
+          </button>
         </div>
       </div>
-      
     </div>
   );
 };

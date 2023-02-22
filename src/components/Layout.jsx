@@ -2,22 +2,28 @@ import React, { createContext } from "react";
 import { Outlet, Link ,useParams} from "react-router-dom";
 import { getData } from "../services/GetData";
 import { useState, useEffect, } from "react";
-import { getDataRest } from "../firebase";
+
 
 export const Context = createContext()
 
 const Layout = () => {
 
     const { id } = useParams()
-    const [restaurantes, setRestaurantes] = useState(null)
+    const [restaurantes, setRestaurantes] = useState([])
+    
+
+
+   
     const getDataRess = async () => {
         try {
-            const res = await getDataRest()
-            setRestaurantes(res.restaurants);
-            console.log(restaurantes);
+            const res = await getData()
+
+            setRestaurantes(res)
+                ;
 
         } catch (error) {
             console.log(error);
+
         }
     }
 
@@ -25,13 +31,33 @@ const Layout = () => {
         getDataRess()
     }, [])
 
+
+    
+
   const FilterProducts = () => {
     const category = restaurante.menu.filter(iten => iten.category == "arroz")
     setRestaurantes(category)
+    // console.log(category);
+    // console.log(restaurante);
+    // const filter1 =context.restaurantes.map(p=>{
+    //   return p.menu.filter(item=>item.category)
+    //   // const res1=p.menu.filter(item=> item.category ==="arroz");
+    //   // setProducts( res1);
+    //   // return p.menu[0].category === "arroz"
+    // })
+    //  const FilterProducts = filter1.filter(item=> item)
+    //  const a = FilterProducts.filter(item=>item)
+    // // console.log(filter);
+    // // console.log(context[0].menu[0].category);
+    // console.log(context.restaurantes[0].menu[0].category);
+    // console.log(filter1);
     console.log(restaurantes);
   }
 
   const restaurante = restaurantes?.find(item => item.idItem === id)
+
+
+
 
     return (
         <>

@@ -20,18 +20,18 @@ const firebaseConfig = {
   measurementId: "G-3FZLMLXBQR"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth=getAuth(app)
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
-export const getDataRest = async() => {
-  const rest = await getDocs(collection(db,"foodList"));
-  const restaurants = [];
-  rest.forEach(r=>{
-    const restaurant = r.data()
-    restaurant.id = r.id;
-    restaurants.push(restaurant);
-  });
-  return {restaurants} 
-}
+
+
+// export const getData = async () => {
+//   const res = await getDocs(collection(db, 'restaurantes'));
+
+//   return res
+
+// }
+

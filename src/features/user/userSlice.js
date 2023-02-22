@@ -3,6 +3,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 const initialState = []
 
+//crear el estado del usuario
 
 export const userSlice = createSlice({
     name: "users",
